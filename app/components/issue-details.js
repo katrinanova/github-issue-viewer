@@ -16,7 +16,7 @@ export default React.createClass({
       )
     }
     if (!issue || (issue.comments && !this.props.comments)){
-      return (<h3>Loading...</h3>);
+      return (<h1 className="loading">Loading...</h1>);
     }
 
     console.log('this.props.comments:' , this.props.comments);

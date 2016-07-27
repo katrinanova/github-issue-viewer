@@ -37,14 +37,13 @@ export default React.createClass({
     // console.log('rendering new repo form this.props.repoInfo.get(owner): ', this.props.repoInfo.get('owner'));
     let errorMessage;
     if (this.props.errorMessage){
-      errorMessage = <h3 className='error-message'>{this.props.errorMessage}</h3>;
+      errorMessage = <h3 className='error-form-not-filled'>{this.props.errorMessage}</h3>;
     } else {
       errorMessage = null;
     }
 
     return (
         <header className='group'>
-          {errorMessage}
           <h1 className='header-title'>View issues in</h1>
           <form className='header-form' onSubmit={this.props.fetchNewRepoIssues}>
             <label>owner:</label>
@@ -53,6 +52,7 @@ export default React.createClass({
             <input type='text' value={this.state.repo} onChange={this.changeRepo} ref='repo'/>
             <button>load</button>
           </form>
+          {errorMessage}
         </header>
 
     );

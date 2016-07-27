@@ -66,6 +66,12 @@ code {
   backgroung: lightgray;
 }
 
+.loading {
+  font-size: 30px;
+  text-align: center;
+  margin-top: 100px;
+}
+
 
 
 /****************************************
@@ -123,13 +129,24 @@ button:active {
 }
 
 .error {
+  margin-top: 100px;
   width: 500px;
   /*background-color: #ff8080;*/
-  color: white;
   /*border: 1px solid red;*/
   color: red;
   font-size: 24px;
   text-align: center;
+}
+
+.error-form-not-filled {
+  /*background-color: #ff8080;*/
+  /*border: 1px solid red;*/
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 60px;
+  color: red;
+  font-size: 24px;
 }
 
 
