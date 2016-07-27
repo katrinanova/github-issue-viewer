@@ -20,9 +20,9 @@ const PaginationContainer = React.createClass({
 
 const mapStateToProps = function(store){
   return {
-    currentPageNum: store.issueState.get("currentPageNum"),
-    lastPageNum: store.issueState.get("lastPageNum"),
-    pages: store.issueState.get("pages")
+    currentPageNum: store.issueState.get('currentPageNum'),
+    lastPageNum: store.issueState.get('lastPageNum'),
+    pages: store.issueState.get('pages')
   };
 }
 export default connect(mapStateToProps)(PaginationContainer);

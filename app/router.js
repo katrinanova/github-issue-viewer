@@ -10,8 +10,8 @@ import IssueDetailsContainer from './components/issue-details-container';
 export default (
   <Router history={browserHistory}>
     <Route component={Layout}>
-      <Route path="/:owner/:repo/issues" component={IssueListContainer} />
-      <Route path="/:owner/:repo/issues/:number" component={IssueDetailsContainer} />
+      <Route path='/:owner/:repo/issues' component={IssueListContainer} />
+      <Route path='/:owner/:repo/issues/:number' component={IssueDetailsContainer} />
     </Route>
   </Router>
 );

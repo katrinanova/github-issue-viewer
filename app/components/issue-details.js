@@ -10,31 +10,30 @@ export default React.createClass({
       return (<h3>Loading...</h3>);
     }
 
-    console.log("this.props.comments:" , this.props.comments);
+    console.log('this.props.comments:' , this.props.comments);
     let comments;
-    console.log("before if state");
+    console.log('before if state');
     if (this.props.comments){
-      console.log("issue has comments: ", this.props.comments);
+      console.log('issue has comments: ', this.props.comments);
       comments = (
           <ul>
             {this.props.comments.map((comment,i) => {
               return (
-                <li key={i}>
-                  {comment.body}
+                <li key={i} dangerouslySetInnerHTML={{ __html: comment.body}}>
                 </li>
               )
             })}
           </ul>
       );
     } else {
-      console.log("issue detail else");
+      console.log('issue detail else');
       comments = null;
     }
 
-    console.log("about to render issue detail");
+    console.log('about to render issue detail');
     return (
       <div>
-        <p>{this.props.issue.body} </p>
+        <p dangerouslySetInnerHTML={{ __html: this.props.issue.body}}></p>
         {comments}
       </div>
     )

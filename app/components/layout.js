@@ -1,5 +1,5 @@
 import React from 'react';
-import NewRepoFormContainer from "./new-repo-form-container"
+import NewRepoFormContainer from './new-repo-form-container'
 
 
 export default React.createClass({
@@ -8,7 +8,7 @@ export default React.createClass({
     console.log('Layout iiner component will render')
 
     return (
-      <div className="layout-container">
+      <div className='layout-container'>
         <NewRepoFormContainer location={this.props.location}/>
 
 

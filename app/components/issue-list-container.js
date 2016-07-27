@@ -24,29 +24,29 @@ const IssueListContainer = React.createClass({
 
     // some props update, not redirect to new route
     if (this.props.location.key === newProps.location.key){
-      console.log("early return from list comp will receive props");
+      console.log('early return from list comp will receive props');
       return;
     }
 
     let place;
     if (oldPage - newPage === 1){
-      place = "prev";
+      place = 'prev';
     } else if (newPage - oldPage === 1){
-      place = "next";
+      place = 'next';
     } else if (newPage === 1){
-      place = "first";
+      place = 'first';
     } else if (newPage === this.props.lastPageNum){
-      place = "last";
+      place = 'last';
     }
 
-    console.log("ppplace: ", place);
+    console.log('ppplace: ', place);
 
     if (newProps.params.owner !== this.props.params.owner || newProps.params.repo !== this.props.params.repo || !place){
-      console.log("page is NOY cashed");
+      console.log('page is NOY cashed');
 
       issueApi.fetchAndLoadIssues(newProps.params.owner, newProps.params.repo, newProps.location.query);
     } else {
-      console.log("page is cashed, new page: ", newPage);
+      console.log('page is cashed, new page: ', newPage);
       // the page is cashed
       issueApi.fetchSurroundingPages(newProps.params.owner, newProps.params.repo, newPage, this.props.lastPageNum);
       store.dispatch(changeCurrentPage(place, newPage));
@@ -72,10 +72,10 @@ const IssueListContainer = React.createClass({
 
 const mapStateToProps = function(store){
   return {
-    issues: store.issueState.getIn(["pages", "current"]),
-    lastPageNum: store.issueState.get("lastPageNum"),
-    error: store.issueState.get("loadingError"),
-    loadingIssues: store.issueState.get("loadingIssues")
+    issues: store.issueState.getIn(['pages', 'current']),
+    lastPageNum: store.issueState.get('lastPageNum'),
+    error: store.issueState.get('loadingError'),
+    loadingIssues: store.issueState.get('loadingIssues')
   };
 }
 export default connect(mapStateToProps)(IssueListContainer);
