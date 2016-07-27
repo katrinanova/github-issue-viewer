@@ -32,7 +32,6 @@ export default (state = initialState, action) => {
           .set('loadingIssues', false)
       );
 
-
     case types.ISSUES_ERROR:
       return state.set('loadingError', action.errorMessage);
 
@@ -50,12 +49,9 @@ export default (state = initialState, action) => {
     case types.CHANGE_PAGE:
 
       const newPageIssues = state.getIn(['pages', action.place]);
-      console.log('newPageIssues in reducer: ', newPageIssues);
-      console.log('action.place: ', action.place);
 
       switch(action.place){
         case ('first'):
-        console.log('first')
           return (
             state
             .set('currentPageNum', 1)
@@ -64,8 +60,6 @@ export default (state = initialState, action) => {
             .setIn(['pages', 'prev'], null)
           );
         case ('prev'):
-        console.log('prevv')
-
           return (
             state
             .set('currentPageNum', state.get('currentPageNum') - 1)
@@ -74,7 +68,6 @@ export default (state = initialState, action) => {
             .setIn(['pages', 'prev'], null)
           );
         case ('next'):
-        console.log('next')
           return (
             state
             .set('currentPageNum', state.get('currentPageNum') + 1)
@@ -83,7 +76,6 @@ export default (state = initialState, action) => {
             .setIn(['pages', 'next'], null)
           );
         case ('last'):
-        console.log('last')
           return (
             state
             .set('currentPageNum', state.get('lastPageNum'))
@@ -91,7 +83,6 @@ export default (state = initialState, action) => {
             .setIn(['pages', 'next'], null)
           );
       }
-
   }
 
   return state;

@@ -27,7 +27,12 @@ export default React.createClass({
         <ul className='label-list group'>
           {this.props.labels.map((label, i) => {
             return (
-              <li key={i} style={{backgroundColor: `#${label.color}`, color: this.blackOrWhite(label.color)}}>
+              <li
+                key={i}
+                style={{
+                  backgroundColor: `#${label.color}`,
+                  color: this.blackOrWhite(label.color)
+                }}>
                 {label.name}
               </li>
             )

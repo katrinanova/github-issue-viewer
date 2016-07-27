@@ -2,7 +2,6 @@ import React from 'react';
 import NameAndAvatar from './name-and-avatar';
 
 
-
 export default React.createClass({
   render: function(){
     return (

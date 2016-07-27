@@ -6,8 +6,6 @@ import IssueItemContainer from './issue-item-container'
 export default React.createClass({
 
   render: function(){
-    console.log('props.issues from issue list: ', this.props.issues);
-    console.log('loadinggg: ', this.props.loading);
     if (this.props.error){
       return (
         <div className='error-container'>
@@ -21,7 +19,6 @@ export default React.createClass({
           </ul>
         </div>
       );
-    // XXX get some gif
   } else if (!this.props.issues || this.props.loading){
       return <h1 className="loading">Loading...</h1>;
     } else {

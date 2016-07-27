@@ -10,12 +10,9 @@ const initialState = Map({
 
 export default (state = initialState, action) => {
 
-
   switch(action.type) {
-    // should I clear comments error?
 
     case types.ISSUE_LOADED:
-    console.log('reducer ISSUE_LOADED: ', action.issues);
       return state.set('issue', action.issue);
 
     case types.ISSUE_ERROR:
@@ -27,7 +24,6 @@ export default (state = initialState, action) => {
       );
 
     case types.COMMENTS_LOADED:
-      console.log('reducer COMMENTS_LOADED: ', action.comments);
       return state.set('comments', action.comments);
 
     case types.COMMENTS_ERROR:

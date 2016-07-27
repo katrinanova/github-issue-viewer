@@ -3,8 +3,6 @@ import NameAndAvatar from './name-and-avatar'
 import Labels from './labels'
 
 
-
-
 export default React.createClass({
 
   render: function(){

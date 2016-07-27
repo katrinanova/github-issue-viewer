@@ -1,0 +1,71 @@
+/****************************************
+  Conversation Cell
+*****************************************/
+
+.convo-cell-container {
+  margin: 20px 0;
+}
+
+.convo-cell-body {
+  float: right;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  width: 730px;
+  padding: 15px;
+  position: relative;
+  min-height: 80px;
+}
+
+.convo-cell-body img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/*gray triangle for tultip border*/
+.convo-cell-body:before {
+  content: '';
+  position: absolute;
+  left: -15px;
+  top: 45px;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 15px solid lightgray;
+}
+
+/*white triangle for tultip*/
+.convo-cell-body:after {
+  content: '';
+  position: absolute;
+  left: -13px;
+  top: 45px;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 15px solid white;
+}
+
+code {
+  font-family: Courier, monospace;
+  font-size: 85%;
+  display: inline;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+}
+
+pre > code {
+  max-width: auto;
+  display: block;
+  overflow: auto;
+  word-break: normal;
+  white-space: pre;
+  margin: 10px 0;
+}
+
+blockquote {
+  padding: 0 1em;
+  color: #777;
+  border-left: 0.25em solid #ddd;
+}

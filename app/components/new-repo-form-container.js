@@ -1,9 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import NewRepoForm from './new-repo-form';
-import store from '../store';
 import { browserHistory } from 'react-router';
 import * as issueApi from '../api/issue-api';
+
 
 export default React.createClass({
 
@@ -18,15 +17,12 @@ export default React.createClass({
   },
 
   fetchNewRepoIssues: function(event) {
-    console.log('fetching new repo');
     event.preventDefault();
     const ownerAndRepo = this.refs.child.getOwnerAndRepo();
 
     if (ownerAndRepo.owner && ownerAndRepo.repo){
       const query = {};
-      console.log('pushing to browserHistory: ', ownerAndRepo.owner + '/' + ownerAndRepo.repo + '/issues');
       browserHistory.push('/' + ownerAndRepo.owner + '/' + ownerAndRepo.repo + '/issues');
-      // issueApi.fetchAndLoadIssues(ownerAndRepo.owner, ownerAndRepo.repo, query, newRepo);
     } else {
       let errorMessage;
       if (!ownerAndRepo.owner && !ownerAndRepo.repo){
@@ -40,7 +36,6 @@ export default React.createClass({
   },
 
   render: function() {
-    console.log('this.props.location.pathname: ', this.props.location.pathname);
     const params = this.props.location.pathname.split('/');
     const repoInfo = {
       owner: params[1],

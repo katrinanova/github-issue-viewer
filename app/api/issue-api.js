@@ -8,61 +8,51 @@ const API_URL_ISSUES = 'https://api.github.com/repos'
 const SHOW_PER_PAGE = 10
 
 
-
 export function fetchAndLoadIssues(owner, repo, query, newRepo){
-  console.log('fetchAndLoadIssues query: ', query);
-  console.log('fetchAndLoadIssues true: ',  (query && query.page));
   let currentPageNum = (query && query.page) ? query.page : 1;
   currentPageNum = parseInt(currentPageNum);
   let lastPageNum;
-
   const url = generateApiUrl(owner, repo, query);
   store.dispatch(loadingIssues());
+
   fetch(url)
   .then(response => {
-    console.log('response1: ', response);
-    console.log('response-hhh: ', response.headers.get('Link'));
     if (response.headers.get('Link')){
       const link = response.headers.get('Link');
       lastPageNum = getLastPageNumber(link) || currentPageNum;
       fetchSurroundingPages(owner, repo, currentPageNum, lastPageNum)
     }
-
     return response.json();
-
   })
   .then(response => {
-    console.log('response.json(), ', response);
     if (response.message){
-      console.log('error here: ');
       store.dispatch(issuesError(response.message));
     } else {
-      console.log('lastPageNum111: ', lastPageNum);
-      console.log('CCCcurrentPageNum ', currentPageNum);
       store.dispatch(currentPageLoaded(parseIssues(response), currentPageNum, lastPageNum));
     }
   })
 }
 
-export function fetchSurroundingPages(owner, repo, currentPageNum, lastPageNum){
-  console.log('fetchSurroundingPages, currentPageNum: ', currentPageNum);
-  console.log('next url: ', generateApiUrl(owner, repo, {page: currentPageNum + 1}));
 
-  if (currentPageNum > 1) fetchPage(generateApiUrl(owner, repo, {page: currentPageNum - 1}), 'prev');
-  if (currentPageNum < lastPageNum) fetchPage(generateApiUrl(owner, repo, {page: currentPageNum + 1}), 'next');
+export function fetchSurroundingPages(owner, repo, currentPageNum, lastPageNum){
+  if (currentPageNum > 1){
+    fetchPage(generateApiUrl(owner, repo, {page: currentPageNum - 1}), 'prev');
+  }
+  if (currentPageNum < lastPageNum){
+    fetchPage(generateApiUrl(owner, repo, {page: currentPageNum + 1}), 'next');
+  }
   fetchPage(generateApiUrl(owner, repo, {page: 1}), 'first');
   fetchPage(generateApiUrl(owner, repo, {page: lastPageNum}), 'last');
 }
 
+
 function fetchPage(url, place){
   let lastPageNum;
-  console.log('fetch page url: ', url);
   fetch(url)
   .then(response => {
-    // get last page number every time when fetching first
+    // get last page once for every call of fetchSurroundingPages
     if (place === 'first'){
       const link = response.headers.get('Link');
-      console.log('linke in fetch page: ', link);
       lastPageNum = getLastPageNumber(link);
     }
     return response.json();
@@ -82,7 +72,7 @@ export function parseIssues(issues){
   }
 
   let parsedIssues = [];
-  for (let issue of issues){
+  issues.forEach(issue => {
     let parsedIssue = {
       id: issue.id,
       number: issue.number,
@@ -99,14 +89,10 @@ export function parseIssues(issues){
       commentsUrl: issue.comments_url
     }
     parsedIssues.push(parsedIssue)
-  }
-
-
+  })
 
   return unpack? parsedIssues[0] : parsedIssues;
 }
-
-
 
 
 export function generateAppUrl(owner, repo, query){
@@ -126,10 +112,10 @@ function generateApiUrl(owner, repo, query = {}){
   return API_URL_ISSUES + path(owner, repo) + '?' + queryString(params);
 }
 
+
 function path(owner, repo){
   return '/' + owner + '/' + repo + '/issues';
 }
-
 
 
 function queryString(params) {
@@ -137,6 +123,7 @@ function queryString(params) {
         return [key, params[key]].map(encodeURIComponent).join('=');
     }).join('&');
 }
+
 
 function getLastPageNumber(link){
   const linksArr = link.split(',').map(el => el.split(';'));

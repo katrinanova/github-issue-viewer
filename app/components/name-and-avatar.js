@@ -2,13 +2,11 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 
 
-
 export default React.createClass({
   redirectToUser: function(e){
     e.stopPropagation();
     location = this.props.user.userUrl
   },
-
 
   render: function(){
     return(

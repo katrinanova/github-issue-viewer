@@ -23,9 +23,6 @@ const filledReducer = Map({
 })
 
 
-
-
-
 describe('issueReducer', () => {
 
   it('should handle ISSUE_LOADED', () => {

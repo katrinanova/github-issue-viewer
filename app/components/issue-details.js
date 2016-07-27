@@ -7,7 +7,6 @@ export default React.createClass({
 
   render: function(){
     const issue = this.props.issue;
-    console.log('rendering issue details, props:', this.props);
     if (this.props.issueError){
       return (
         <div className='error-container'>
@@ -16,14 +15,11 @@ export default React.createClass({
       )
     }
     if (!issue || (issue.comments && !this.props.comments)){
-      return (<h1 className="loading">Loading...</h1>);
+      return <h1 className="loading">Loading...</h1>;
     }
 
-    console.log('this.props.comments:' , this.props.comments);
     let comments;
-    console.log('before if state');
     if (this.props.comments){
-      console.log('issue has comments: ', this.props.comments);
       comments = (
           <ul>
             {this.props.comments.map((comment,i) => {
@@ -36,11 +32,9 @@ export default React.createClass({
           </ul>
       );
     } else {
-      console.log('issue detail else');
       comments = null;
     }
 
-    console.log('about to render issue detail')
     const color = issue.state === 'open' ? 'green' : 'red'
     return (
       <div>
