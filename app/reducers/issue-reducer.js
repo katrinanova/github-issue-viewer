@@ -29,8 +29,8 @@ export default (state = initialState, action) => {
           .set("currentPageNum", action.currentPageNum)
           .set("lastPageNum", action.lastPageNum)
           .set("loadingError", null)
-          .set("loadingIssues", false);
-      )
+          .set("loadingIssues", false)
+      );
 
 
     case types.ISSUES_ERROR:
@@ -41,8 +41,8 @@ export default (state = initialState, action) => {
           return (
             state
               .set("lastPageNum", action.lastPageNum)
-              .setIn(["pages", action.place], action.issues);
-            )
+              .setIn(["pages", action.place], action.issues)
+            );
         } else {
           return state.setIn(["pages", action.place], action.issues);
         }
@@ -61,8 +61,8 @@ export default (state = initialState, action) => {
             .set("currentPageNum", 1)
             .setIn(["pages", "current"], newPageIssues)
             .setIn(["pages", "next"], null)
-            .setIn(["pages", "prev"], null);
-          )
+            .setIn(["pages", "prev"], null)
+          );
         case ("prev"):
         console.log('prevv')
 
@@ -71,8 +71,8 @@ export default (state = initialState, action) => {
             .set("currentPageNum", state.get("currentPageNum") - 1)
             .setIn(["pages", "next"], state.getIn(["pages", "current"]))
             .setIn(["pages", "current"], newPageIssues)
-            .setIn(["pages", "prev"], null);
-          )
+            .setIn(["pages", "prev"], null)
+          );
         case ("next"):
         console.log('next')
           return (
@@ -80,16 +80,16 @@ export default (state = initialState, action) => {
             .set("currentPageNum", state.get("currentPageNum") + 1)
             .setIn(["pages", "prev"], state.getIn(["pages", "current"]))
             .setIn(["pages", "current"], newPageIssues)
-            .setIn(["pages", "next"], null);
-          )
+            .setIn(["pages", "next"], null)
+          );
         case ("last"):
         console.log('last')
           return (
             state
             .set("currentPageNum", state.get("lastPageNum"))
             .setIn(["pages", "current"], newPageIssues)
-            .setIn(["pages", "next"], null);
-          )
+            .setIn(["pages", "next"], null)
+          );
       }
 
   }

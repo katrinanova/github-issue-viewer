@@ -41,7 +41,6 @@ export function fetchAndLoadIssues(owner, repo, query, newRepo){
   })
 }
 
-
 export function fetchSurroundingPages(owner, repo, currentPageNum, lastPageNum){
   console.log("fetchSurroundingPages, currentPageNum: ", currentPageNum)
   console.log("next url: ", generateApiUrl(owner, repo, {page: currentPageNum + 1}))
