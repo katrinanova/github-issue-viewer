@@ -1,5 +1,7 @@
 import React from 'react';
 import NameAndAvatar from './name-and-avatar'
+import Labels from './labels'
+
 
 
 
@@ -16,6 +18,7 @@ export default React.createClass({
         <section className='item-issue-info'>
           <h2>{issue.title} <span className='issue-number'>#{issue.number}</span></h2>
           <p>{this.props.resizedBody}</p>
+          <Labels labels={issue.labels}/>
         </section>
       </div>
     );
