@@ -8,6 +8,13 @@ export default React.createClass({
   render: function(){
     const issue = this.props.issue;
     console.log('rendering issue details, props:', this.props);
+    if (this.props.issueError){
+      return (
+        <div className='error-container'>
+          <h3 className='error'>{this.props.issueError}</h3>
+        </div>
+      )
+    }
     if (!issue || (issue.comments && !this.props.comments)){
       return (<h3>Loading...</h3>);
     }

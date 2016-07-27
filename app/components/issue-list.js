@@ -12,6 +12,13 @@ export default React.createClass({
       return (
         <div className='error-container'>
           <h3 className='error'>{this.props.error}</h3>
+          <h4>Common causes of failure:</h4>
+          <ul className="error-list">
+            <li>Owner's name is correct</li>
+            <li>Repo's title is correct</li>
+            <li>Repo is private</li>
+            <li>If excided API rate limit, please consider <a href="https://developer.github.com/v3/#authentication">authentification</a></li>
+          </ul>
         </div>
       );
     // XXX get some gif

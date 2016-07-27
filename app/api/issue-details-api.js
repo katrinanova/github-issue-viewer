@@ -33,6 +33,7 @@ export function fetchIssue(params){
   .then(response => response.json())
   .then(response => {
     if (response.message){
+      console.log("errrrr")
       store.dispatch(issueError(response.message));
     } else {
       parseForUserLinks(parseIssues(response));
