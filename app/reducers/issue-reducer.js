@@ -36,16 +36,16 @@ export default (state = initialState, action) => {
     case types.ISSUES_ERROR:
       return state.set('loadingError', action.errorMessage);
 
-      case types.PAGE_LOADED:
-        if (action.lastPageNum) {
-          return (
-            state
-              .set('lastPageNum', action.lastPageNum)
-              .setIn(['pages', action.place], action.issues)
-            );
-        } else {
-          return state.setIn(['pages', action.place], action.issues);
-        }
+    case types.PAGE_LOADED:
+      if (action.lastPageNum) {
+        return (
+          state
+            .set('lastPageNum', action.lastPageNum)
+            .setIn(['pages', action.place], action.issues)
+          );
+      } else {
+        return state.setIn(['pages', action.place], action.issues);
+      }
 
     case types.CHANGE_PAGE:
 
