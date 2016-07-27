@@ -4,6 +4,8 @@
   "description": "issues viewer for github",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
+    "webpack": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Katrina Nova katrinadev.com",
