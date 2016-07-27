@@ -23,7 +23,7 @@ export default React.createClass({
           <ul className="issue-list">
             {this.props.issues.map(issue => {
               return (
-                <li key={issue.id}> issue={issue.title} />
+                <li onClick={this.props.redirectToIssueDetails.bind(null, issue.number)}key={issue.id}> issue={issue.title} />
                 </li>
               )
             })}

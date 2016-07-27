@@ -36,46 +36,79 @@ export function fetchAndLoadIssues(owner, repo, query, newRepo){
     } else {
       console.log('lastPageNum111: ', lastPageNum);
       console.log('CCCcurrentPageNum ', currentPageNum);
-      store.dispatch(currentPageLoaded(response, currentPageNum, lastPageNum));
+      store.dispatch(currentPageLoaded(parseIssues(response), currentPageNum, lastPageNum));
     }
   })
 }
 
 export function fetchSurroundingPages(owner, repo, currentPageNum, lastPageNum){
-  console.log("fetchSurroundingPages, currentPageNum: ", currentPageNum)
-  console.log("next url: ", generateApiUrl(owner, repo, {page: currentPageNum + 1}))
+  console.log("fetchSurroundingPages, currentPageNum: ", currentPageNum);
+  console.log("next url: ", generateApiUrl(owner, repo, {page: currentPageNum + 1}));
 
-  if (currentPageNum > 1) fetchPage(generateApiUrl(owner, repo, {page: currentPageNum - 1}), "prev")
-  if (currentPageNum < lastPageNum) fetchPage(generateApiUrl(owner, repo, {page: currentPageNum + 1}), "next")
-  fetchPage(generateApiUrl(owner, repo, {page: 1}), "first")
-  fetchPage(generateApiUrl(owner, repo, {page: lastPageNum}), "last")
+  if (currentPageNum > 1) fetchPage(generateApiUrl(owner, repo, {page: currentPageNum - 1}), "prev");
+  if (currentPageNum < lastPageNum) fetchPage(generateApiUrl(owner, repo, {page: currentPageNum + 1}), "next");
+  fetchPage(generateApiUrl(owner, repo, {page: 1}), "first");
+  fetchPage(generateApiUrl(owner, repo, {page: lastPageNum}), "last");
 }
 
 function fetchPage(url, place){
-  let lastPageNum
-  console.log("fetch page url: ", url)
+  let lastPageNum;
+  console.log("fetch page url: ", url);
   fetch(url)
   .then(response => {
     // get last page number every time when fetching first
     if (place === "first"){
-      const link = response.headers.get("Link")
-      console.log("linke in fetch page: ", link)
-      lastPageNum = getLastPageNumber(link)
+      const link = response.headers.get("Link");
+      console.log("linke in fetch page: ", link);
+      lastPageNum = getLastPageNumber(link);
     }
-    return response.json()
+    return response.json();
   }).then(response => {
     if (response.message){
-      store.dispatch(issuesError(response.message))
+      store.dispatch(issuesError(response.message));
     } else {
-      store.dispatch(pageLoaded(response, place, lastPageNum))
+      store.dispatch(pageLoaded(parseIssues(response), place, lastPageNum));
     }
   })
 }
 
+export function parseIssues(issues){
+  if (!Array.isArray(issues)){
+    issues = [issues];
+    var unpack = true;
+  }
+
+  let parsedIssues = [];
+  for (let issue of issues){
+    let parsedIssue = {
+      id: issue.id,
+      number: issue.number,
+      title: issue.title,
+      body: issue.body,
+      labels: issue.labels,
+      state: issue.state,
+      user: {
+        name: issue.user.login,
+        avatarUrl: issue.user.avatar_url,
+        userUrl: issue.user.html_url,
+      },
+      comments: issue.comments,
+      commentsUrl: issue.comments_url
+    }
+    parsedIssues.push(parsedIssue)
+  }
+
+
+
+  return unpack? parsedIssues[0] : parsedIssues;
+}
+
+
+
 
 export function generateAppUrl(owner, repo, query){
-  const pageNum = (query && query.page) ? query.page : 1
-  return path(owner, repo) + "?page=" + pageNum
+  const pageNum = (query && query.page) ? query.page : 1;
+  return path(owner, repo) + "?page=" + pageNum;
 }
 
 
@@ -91,7 +124,7 @@ function generateApiUrl(owner, repo, query = {}){
 }
 
 function path(owner, repo){
-  return "/" + owner + "/" + repo + "/issues"
+  return "/" + owner + "/" + repo + "/issues";
 }
 
 

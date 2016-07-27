@@ -51,7 +51,12 @@ const IssueListContainer = React.createClass({
       issueApi.fetchSurroundingPages(newProps.params.owner, newProps.params.repo, newPage, this.props.lastPageNum);
       store.dispatch(changeCurrentPage(place, newPage));
     }
-},
+  },
+
+  redirectToIssueDetails: function(id){
+    var path = "/" + this.props.params.owner + "/" + this.props.params.repo + "/issues"
+    browserHistory.push(path + "/" + id)
+  },
 
 
   render: function() {
@@ -65,7 +70,9 @@ const IssueListContainer = React.createClass({
         issues={this.props.issues}
         error={this.props.error}
         loading={this.props.loadingIssues}
+        redirectToIssueDetails={this.redirectToIssueDetails}
         repoInfo={repoInfo}/>
+
     );
   },
 });
