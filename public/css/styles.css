@@ -212,6 +212,7 @@ button:active {
   display: block;
   width: 100%;
   height: auto;
+  border-radius: 5px;
 }
 
 .avatar-container:hover .avatar-name {
@@ -274,7 +275,7 @@ button:active {
 .issue-details-title {
   font-size: 30px;
   margin: 40px 0 15px 0;
-  font-weight: bold;
+  font-family: Arial;
 }
 
 .issue-state {
