@@ -22,6 +22,12 @@ npm install
 npm run webpack
 npm start
 ```
+
+to test
+```
+npm test
+```
+
 available at [http://localhost:3000/npm/npm/issues](http://localhost:3000/npm/npm/issues)
 
 
