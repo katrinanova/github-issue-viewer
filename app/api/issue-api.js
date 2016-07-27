@@ -1,3 +1,4 @@
+import fetch from 'isomorphic-fetch';
 import store from '../store';
 import { loadingIssues, currentPageLoaded, issuesError, pageLoaded } from '../actions/issue-actions';
 import marked from 'marked'
@@ -120,7 +121,7 @@ function generateApiUrl(owner, repo, query = {}){
     page: 1,
     state: 'all'
   }
-  
+
   params = Object.assign(params, query);
   return API_URL_ISSUES + path(owner, repo) + '?' + queryString(params);
 }

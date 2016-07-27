@@ -1,8 +1,8 @@
+import fetch from 'isomorphic-fetch';
 import store from '../store';
 import { issueLoaded, issueError, commentsLoaded, commentsError } from '../actions/issue-details-actions';
 import { parseIssues } from './issue-api'
 import marked from 'marked'
-
 
 
 
