@@ -12,8 +12,8 @@ const IssueDetailsContainer = React.createClass({
     store.dispatch(clearComments());
 
     if (store.getState().issueState.getIn(['pages', 'current'])){
-      let issue = this.getIssueFromStore(this.props.params.number);
-      store.dispatch(issueLoaded(issue));
+      const issue = this.getIssueFromStore(this.props.params.number);
+      issueDetailsApi.parseForUserLinks(issue)
       if (issue.comments){
         issueDetailsApi.fetchComments(issue.commentsUrl);
       }

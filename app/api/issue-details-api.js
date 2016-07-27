@@ -46,7 +46,7 @@ export function fetchIssue(params){
 
 
 
-function parseForUserLinks(response){
+export function parseForUserLinks(response){
   let responseType;
   if (Array.isArray(response)){
     responseType = 'comments';
