@@ -1,0 +1,133 @@
+html, body, header, nav, p, h1,
+ul, li, strong, main, button, i,
+section, img, div, h2, h3, form,
+fieldset, label, textarea,
+span, article, footer, time, small, pre {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  vertical-align: inherit;
+  box-sizing: inherit;
+  background: transparent;
+}
+
+ul {
+  list-style: none;
+}
+
+
+input[type="password"],
+input[type="email"],
+input[type="text"],
+input[type="submit"],
+textarea,
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+
+/* Clearfix */
+
+.group:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+
+/****************************************
+  General
+*****************************************/
+
+
+body {
+  width: 100%;
+  font-family: Verdana, arial, sans-serif;
+  font-size: 16px;
+  color: gray;
+}
+
+.layout-container {
+  width: 900px;
+  margin: 0 auto;
+}
+
+h2 {
+  font-weight: bold;
+}
+
+code {
+  backgroung: lightgray;
+}
+
+
+
+/****************************************
+  Title Form
+*****************************************/
+
+header {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+.header-title {
+  margin-top: 3px;
+  float: left;
+}
+
+.header-form {
+  float: left;
+}
+
+label {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+input {
+  font-size: 28px;
+  color: gray;
+}
+
+input[type="text"] {
+  width: 190px;
+  padding-left: 3px;
+}
+
+button {
+  position: relative;
+  padding: 3px 10px;
+  margin-left: 10px;
+  color: #fff;
+  background: #00bf8f;
+  border-radius: 5px;
+  box-shadow: 0 3px 0 0 #070;
+}
+
+button:hover {
+  background: #00B084;
+}
+
+button:active {
+  top: 3px;
+  background: #00B084;
+  box-shadow: none;
+}
+
+.error {
+  width: 500px;
+  /*background-color: #ff8080;*/
+  color: white;
+  /*border: 1px solid red;*/
+  color: red;
+  font-size: 24px;
+  text-align: center;
+}
