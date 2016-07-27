@@ -24,7 +24,7 @@ export default React.createClass({
           <ul className='issue-list'>
             {this.props.issues.map(issue => {
               return (
-                <li key={issue.id}> issue={issue.title} />
+                <li key={issue.id}>
                   <IssueItemContainer issue={issue} repoInfo={this.props.repoInfo} />
                 </li>
               );

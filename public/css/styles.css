@@ -131,3 +131,94 @@ button:active {
   font-size: 24px;
   text-align: center;
 }
+
+
+
+/****************************************
+  Issue List
+*****************************************/
+
+.error-container {
+  width: 470px;
+  margin: 0 auto;
+}
+
+.error-list > li:before {
+  content: "- "
+}
+
+.issue-list > li {
+  border: 1px solid lightgray;
+  border-bottom: none;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.issue-list > li:hover {
+  border: 3px solid #00bf8f;
+  padding: 13px;
+  padding-bottom: 12px;
+}
+
+.issue-list > li:last-child {
+  border-bottom: 1px solid lightgray;
+}
+
+.issue-list > li:last-child:hover {
+  border-bottom: 3px solid #00bf8f;
+  padding-bottom: 13px;
+}
+
+
+/****************************************
+  Issue Item
+*****************************************/
+
+.item-issue-info {
+  padding-left: 20px;
+  float: left;
+  width: 730px;
+}
+
+.item-issue-info {
+  padding-left: 20px;
+  float: left;
+  width: 730px;
+}
+
+.item-issue-preview {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.issue-number {
+  color: lightgray
+}
+
+
+/****************************************
+  Avatar
+*****************************************/
+
+.avatar-container {
+  width: 110px;
+  height: auto;
+  text-align: center;
+  float: left;
+  cursor: pointer;
+}
+
+.avatar-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.avatar-container:hover .avatar-name {
+  color: #00bf8f;
+  text-decoration: underline;
+}
+
+.avatar-name {
+  font-size: 14px;
+}
