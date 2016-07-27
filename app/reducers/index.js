@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 import issueReducer from './issue-reducer';
 
-var reducers = combineReducers({
+const reducers = combineReducers({
     issueState: issueReducer,
 });
 

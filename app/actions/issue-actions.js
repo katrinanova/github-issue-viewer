@@ -22,3 +22,20 @@ export function issuesError(errorMessage){
     errorMessage
   }
 }
+
+export function changeCurrentPage(place, currentPageNum){
+  return {
+    type: types.CHANGE_PAGE,
+    place,
+    currentPageNum
+  }
+}
+
+export function pageLoaded(issues, place, lastPageNum){
+  return {
+    type: types.PAGE_LOADED,
+    issues,
+    place,
+    lastPageNum
+  }
+}

@@ -14,6 +14,45 @@ const IssueListContainer = React.createClass({
     issueApi.fetchAndLoadIssues(this.props.params.owner, this.props.params.repo, this.props.location.query);
   },
 
+  componentWillReceiveProps: function(newProps){
+    console.log('IssueListContainer component receive new props: ', newProps);
+    console.log('IssueListContainer component receive old props: ', this.props);
+
+    const oldPage = parseInt(this.props.location.query.page || 1);
+
+    const newPage = parseInt(newProps.location.query.page || 1);
+
+    // some props update, not redirect to new route
+    if (this.props.location.key === newProps.location.key){
+      console.log("early return from list comp will receive props");
+      return;
+    }
+
+    let place;
+    if (oldPage - newPage === 1){
+      place = "prev";
+    } else if (newPage - oldPage === 1){
+      place = "next";
+    } else if (newPage === 1){
+      place = "first";
+    } else if (newPage === this.props.lastPageNum){
+      place = "last";
+    }
+
+    console.log("ppplace: ", place);
+
+    if (newProps.params.owner !== this.props.params.owner || newProps.params.repo !== this.props.params.repo || !place){
+      console.log("page is NOY cashed");
+
+      issueApi.fetchAndLoadIssues(newProps.params.owner, newProps.params.repo, newProps.location.query);
+    } else {
+      console.log("page is cashed, new page: ", newPage)
+      // the page is cashed
+      issueApi.fetchSurroundingPages(newProps.params.owner, newProps.params.repo, newPage, this.props.lastPageNum);
+      store.dispatch(changeCurrentPage(place, newPage));
+    }
+},
+
 
   render: function() {
     const repoInfo = {
@@ -35,6 +74,7 @@ const IssueListContainer = React.createClass({
 const mapStateToProps = function(store){
   return {
     issues: store.issueState.getIn(["pages", "current"]),
+    lastPageNum: store.issueState.get("lastPageNum"),
     error: store.issueState.get("loadingError"),
     loadingIssues: store.issueState.get("loadingIssues")
   };

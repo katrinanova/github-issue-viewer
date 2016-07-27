@@ -8,9 +8,9 @@ import * as issueApi from '../api/issue-api';
 export default React.createClass({
 
   render: function(){
-    var page = this.props.currentPageNum
-    var owner = this.props.repoInfo.owner
-    var repo = this.props.repoInfo.repo
+    const page = this.props.currentPageNum;
+    const owner = this.props.repoInfo.owner;
+    const repo = this.props.repoInfo.repo;
     return (
       <div>
         <ul>

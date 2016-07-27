@@ -1,5 +1,5 @@
 import store from '../store';
-import { loadingIssues, currentPageLoaded, issuesError } from '../actions/issue-actions';
+import { loadingIssues, currentPageLoaded, issuesError, pageLoaded } from '../actions/issue-actions';
 
 const API_URL_ISSUES = "https://api.github.com/repos"
 const SHOW_PER_PAGE = 10
@@ -22,6 +22,7 @@ export function fetchAndLoadIssues(owner, repo, query, newRepo){
     if (response.headers.get("Link")){
       const link = response.headers.get("Link");
       lastPageNum = getLastPageNumber(link) || currentPageNum;
+      fetchSurroundingPages(owner, repo, currentPageNum, lastPageNum)
     }
 
     return response.json();
@@ -40,8 +41,41 @@ export function fetchAndLoadIssues(owner, repo, query, newRepo){
   })
 }
 
+
+export function fetchSurroundingPages(owner, repo, currentPageNum, lastPageNum){
+  console.log("fetchSurroundingPages, currentPageNum: ", currentPageNum)
+  console.log("next url: ", generateApiUrl(owner, repo, {page: currentPageNum + 1}))
+
+  if (currentPageNum > 1) fetchPage(generateApiUrl(owner, repo, {page: currentPageNum - 1}), "prev")
+  if (currentPageNum < lastPageNum) fetchPage(generateApiUrl(owner, repo, {page: currentPageNum + 1}), "next")
+  fetchPage(generateApiUrl(owner, repo, {page: 1}), "first")
+  fetchPage(generateApiUrl(owner, repo, {page: lastPageNum}), "last")
+}
+
+function fetchPage(url, place){
+  let lastPageNum
+  console.log("fetch page url: ", url)
+  fetch(url)
+  .then(response => {
+    // get last page number every time when fetching first
+    if (place === "first"){
+      const link = response.headers.get("Link")
+      console.log("linke in fetch page: ", link)
+      lastPageNum = getLastPageNumber(link)
+    }
+    return response.json()
+  }).then(response => {
+    if (response.message){
+      store.dispatch(issuesError(response.message))
+    } else {
+      store.dispatch(pageLoaded(response, place, lastPageNum))
+    }
+  })
+}
+
+
 export function generateAppUrl(owner, repo, query){
-  var pageNum = (query && query.page) ? query.page : 1
+  const pageNum = (query && query.page) ? query.page : 1
   return path(owner, repo) + "?page=" + pageNum
 }
 
