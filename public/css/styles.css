@@ -222,3 +222,35 @@ button:active {
 .avatar-name {
   font-size: 14px;
 }
+
+
+/****************************************
+  Pagination
+*****************************************/
+
+.disabled {
+  pointer-events: none;
+  color: lightgray;
+}
+
+.pagination-list {
+  float: right;
+}
+
+.pagination-list > li {
+  float: left;
+  margin: 10px;
+  text-decoration: underline;
+}
+
+.pagination-list > li:hover {
+  color: #00bf8f;
+}
+
+.pagination-list > li:nth-child(3) {
+  text-decoration: none;
+}
+
+.pagination-list > li:nth-child(3):hover {
+  color: gray;
+}
