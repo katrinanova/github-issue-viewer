@@ -1,8 +1,11 @@
+/****************************************
+  Reset
+*****************************************/
+
 html, body, header, nav, p, h1,
 ul, li, strong, main, button, i,
 section, img, div, h2, h3, form,
-fieldset, label, textarea,
-span, article, footer, time, small, pre {
+label, span {
   margin: 0;
   padding: 0;
   border: 0;
@@ -21,11 +24,8 @@ ul {
 }
 
 
-input[type="password"],
-input[type="email"],
+
 input[type="text"],
-input[type="submit"],
-textarea,
 button {
   -webkit-appearance: none;
   -moz-appearance: none;
