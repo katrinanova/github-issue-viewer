@@ -12,9 +12,9 @@ export default React.createClass({
 
     // brightness > than 0.5 should be bright enough for black text
     if (brightness >= 0.5) {
-      return "black";
+      return 'black';
     } else {
-      return "white";
+      return 'white';
     }
   },
 
@@ -24,7 +24,7 @@ export default React.createClass({
       return null
     } else {
       return (
-        <ul className="label-list group">
+        <ul className='label-list group'>
           {this.props.labels.map((label, i) => {
             return (
               <li key={i} style={{backgroundColor: `#${label.color}`, color: this.blackOrWhite(label.color)}}>

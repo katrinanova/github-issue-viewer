@@ -25,7 +25,7 @@ ul {
 
 
 
-input[type="text"],
+input[type='text'],
 button {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -35,7 +35,7 @@ button {
 /* Clearfix */
 
 .group:after {
-  content: "";
+  content: '';
   display: block;
   clear: both;
 }
@@ -97,7 +97,7 @@ input {
   color: gray;
 }
 
-input[type="text"] {
+input[type='text'] {
   width: 190px;
   padding-left: 3px;
 }
@@ -144,7 +144,7 @@ button:active {
 }
 
 .error-list > li:before {
-  content: "- "
+  content: '- '
 }
 
 .issue-list > li {
@@ -283,4 +283,95 @@ button:active {
   color: white;
   margin: 10px;
   font-size: 26px;
+}
+
+
+/****************************************
+  Conversation Cell
+*****************************************/
+.convo-cell-container {
+  margin: 20px 0;
+}
+
+.convo-cell-body {
+  float: right;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  width: 730px;
+  padding: 15px;
+  position: relative;
+  min-height: 80px;
+}
+
+.convo-cell-body img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/*gray triangle for tultip border*/
+.convo-cell-body:before {
+  content: '';
+  position: absolute;
+  left: -15px;
+  top: 45px;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 15px solid lightgray;
+}
+
+/*white triangle for tultip*/
+.convo-cell-body:after {
+  content: '';
+  position: absolute;
+  left: -13px;
+  top: 45px;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 15px solid white;
+}
+
+
+ code {
+  font-family: Courier, monospace;
+  font-size: 14px;
+  display: inline;
+  overflow: auto;
+  background-color: lightgray;
+}
+
+/*pre code {
+  display: inline;
+  max-width: 600px;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  line-height: inherit;
+  word-wrap: normal;
+  border: 0;
+}*/
+pre>code {
+  max-width: auto;
+  display: block;
+  overflow: auto;
+  word-break: normal;
+  white-space: pre;
+  margin: 10px 0;
+
+}
+
+code {
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
+}
+
+blockquote {
+  padding: 0 1em;
+  color: #777;
+  border-left: 0.25em solid #ddd;
 }

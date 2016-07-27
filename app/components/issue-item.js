@@ -12,7 +12,7 @@ export default React.createClass({
 
     return (
       <div
-        className="item-container group"
+        className='item-container group'
         onClick={this.props.redirectToIssueDetails.bind(null, this.props.issue.number)}>
         <NameAndAvatar user={issue.user}/>
         <section className='item-issue-info'>

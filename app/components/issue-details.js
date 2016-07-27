@@ -1,4 +1,6 @@
 import React from 'react';
+import Labels from './labels'
+import ConversationCell from './conversation-cell'
 
 
 export default React.createClass({
@@ -19,7 +21,8 @@ export default React.createClass({
           <ul>
             {this.props.comments.map((comment,i) => {
               return (
-                <li key={i} dangerouslySetInnerHTML={{ __html: comment.body}}>
+                <li key={i}>
+                  <ConversationCell body={comment.body} user={comment.user}/>
                 </li>
               )
             })}
@@ -30,10 +33,15 @@ export default React.createClass({
       comments = null;
     }
 
-    console.log('about to render issue detail');
+    console.log('about to render issue detail')
+    const color = issue.state === 'open' ? 'green' : 'red'
     return (
       <div>
-        <p dangerouslySetInnerHTML={{ __html: this.props.issue.body}}></p>
+        <h2 className='issue-details-title'>{this.props.issue.title} <span className='issue-number'>#{issue.number}</span><span className='issue-state' style={{backgroundColor: color}}>{issue.state}</span></h2>
+        <Labels labels={issue.labels}/>
+
+        <ConversationCell body={issue.body} user={issue.user}/>
+
         {comments}
       </div>
     )
