@@ -1,5 +1,6 @@
 # Viewer of GitHub repo's open and closed issues
 
+The app is hosted at [http://issue-viewer-github.herokuapp.com/npm/npm/issues](http://issue-viewer-github.herokuapp.com/npm/npm/issues)
 
 ## The App
 
@@ -38,7 +39,7 @@ Since the user cannot change the app's state, I chose not to crowd local storage
 In order to parse issue and comments for potential links to users (@katrinanova) I first get all the login names of the users present in the conversation (user who asked the issue an every user who commented). That way I have a set of pre-approved login names and only need to do minimal amount of fetch requests to test potential links. (`parseForUserLinks` function in `issue-details-api`)
 
 
-### React and Redux.
+### React and Redux
 
 In the components folder there are "containers" aka "smart" components, that connect to the store and listen to the store's state changes with `mapStateToProps` function. Container components have all the logic like reacting to reacts `componentWillReceiveProps` function. These components pass the props to the "views" aka "dumb" components, that only responsible for rendering.
 
