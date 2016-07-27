@@ -40,6 +40,11 @@ export function fetchAndLoadIssues(owner, repo, query, newRepo){
   })
 }
 
+export function generateAppUrl(owner, repo, query){
+  var pageNum = (query && query.page) ? query.page : 1
+  return path(owner, repo) + "?page=" + pageNum
+}
+
 
 function generateApiUrl(owner, repo, query = {}){
   let params = {
@@ -55,6 +60,8 @@ function generateApiUrl(owner, repo, query = {}){
 function path(owner, repo){
   return "/" + owner + "/" + repo + "/issues"
 }
+
+
 
 function queryString(params) {
     return Object.keys(params).map(function(key) {

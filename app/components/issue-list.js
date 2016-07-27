@@ -1,4 +1,6 @@
 import React from 'react';
+import PaginationContainer from "./pagination-container"
+
 
 export default React.createClass({
 
@@ -17,14 +19,16 @@ export default React.createClass({
     } else {
       return (
         <div>
+          <PaginationContainer repoInfo={this.props.repoInfo}/>
           <ul className="issue-list">
             {this.props.issues.map(issue => {
               return (
-                <li key={issue.id}> issue={issue.body} />
+                <li key={issue.id}> issue={issue.title} />
                 </li>
               )
             })}
           </ul>
+          <PaginationContainer repoInfo={this.props.repoInfo}/>
         </div>
       );
     }
