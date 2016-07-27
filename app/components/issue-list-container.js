@@ -46,18 +46,12 @@ const IssueListContainer = React.createClass({
 
       issueApi.fetchAndLoadIssues(newProps.params.owner, newProps.params.repo, newProps.location.query);
     } else {
-      console.log("page is cashed, new page: ", newPage)
+      console.log("page is cashed, new page: ", newPage);
       // the page is cashed
       issueApi.fetchSurroundingPages(newProps.params.owner, newProps.params.repo, newPage, this.props.lastPageNum);
       store.dispatch(changeCurrentPage(place, newPage));
     }
   },
-
-  redirectToIssueDetails: function(id){
-    var path = "/" + this.props.params.owner + "/" + this.props.params.repo + "/issues"
-    browserHistory.push(path + "/" + id)
-  },
-
 
   render: function() {
     const repoInfo = {
@@ -70,9 +64,7 @@ const IssueListContainer = React.createClass({
         issues={this.props.issues}
         error={this.props.error}
         loading={this.props.loadingIssues}
-        redirectToIssueDetails={this.redirectToIssueDetails}
         repoInfo={repoInfo}/>
-
     );
   },
 });

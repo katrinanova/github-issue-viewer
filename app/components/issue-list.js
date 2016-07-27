@@ -1,18 +1,19 @@
 import React from 'react';
-import PaginationContainer from "./pagination-container"
+import PaginationContainer from "./pagination-container";
+import IssueItemContainer from './issue-item-container'
 
 
 export default React.createClass({
 
   render: function(){
-    console.log("props.issues from issue list: ", this.props.issues)
-    console.log("loadinggg: ", this.props.loading)
+    console.log("props.issues from issue list: ", this.props.issues);
+    console.log("loadinggg: ", this.props.loading);
     if (this.props.error){
       return (
         <div className="error-container">
           <h3 className="error">{this.props.error}</h3>
         </div>
-      )
+      );
     // XXX get some gif
   } else if (!this.props.issues || this.props.loading){
       return <h1>Loading...</h1>
@@ -23,15 +24,15 @@ export default React.createClass({
           <ul className="issue-list">
             {this.props.issues.map(issue => {
               return (
-                <li onClick={this.props.redirectToIssueDetails.bind(null, issue.number)}key={issue.id}> issue={issue.title} />
+                <li key={issue.id}> issue={issue.title} />
+                  <IssueItemContainer issue={issue} repoInfo={this.props.repoInfo} />
                 </li>
-              )
+              );
             })}
           </ul>
           <PaginationContainer repoInfo={this.props.repoInfo}/>
         </div>
       );
     }
-
   }
-})
+});
